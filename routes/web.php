@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
+ use App\Http\Controllers\UserController;
+ Route::group(['prefix' => 'admin'], function () {
+     Route::resource('user', UserController::class);
+ });
+
 Route::get('/', function () {
-    return view('layouts.backend');
-})->middleware('auth');
+    return view('welcome');
+});
 
 Route::get('data', function () {
     return view('data');
@@ -24,7 +29,7 @@ Route::get('data', function () {
 
 
 Auth::routes(
-    ['register' => false]
+    // ['register' => false]
 );
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
