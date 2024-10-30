@@ -30,7 +30,7 @@
                             <li>
                                 <a href="{{route('user.index')}}">
                                     <i data-feather="home"></i>
-                                    <span> Dashboard </span>
+                                    <span> ACL </span>
                                 </a>
                             </li>
 

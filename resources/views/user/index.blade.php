@@ -2,17 +2,17 @@
 @section('content')
 <div class="col-xl-6">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header shadow">
             <h5 class="card-title mb-0">List Admin</h5>
         </div><!-- end card header -->
 
-        <div class="card-body">
+        <div class="card-body shadow">
             <div> <a href="{{route ('user.create')}}" type="button" class="btn btn-info  rounded-pill">ADD USER</a></div>
             <div class="table-responsive">
-                <table class="table table-striped mb-0">
+                <table class="table table-striped mb-0 ">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">is_admin</th>
@@ -26,9 +26,18 @@
                             <td>{{ $item->name}}</td>
                             <td>{{ $item->email}}</td>
                             <td>{{ $item->is_admin ? 'Admin' : 'User'}}</td>
-                            <td><a href="{{route ('user.show', $item->id)}}" type="button" class="btn btn-warning rounded-pill">SHOW</a>
+                            <td><a href="{{route ('user.show', $item->id)}}" type="button" class="btn btn-info rounded-pill">SHOW</a>
                                 <a href="{{route ('user.edit', $item->id)}}" type="button" class="btn btn-warning rounded-pill">EDIT</a>
-                            <button type="button" class="btn btn-danger  rounded-pill">HAPUS</button></td>
+                                <a class="btn ripple btn-danger px-2 rounded-pill" href="#"
+                                onclick="event.preventDefault();
+                                              document.getElementById('destroy-form').submit();">
+                                HAPUS
+                             </a>
+
+                             <form id="destroy-form" action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-none">
+                                @method('DELETE')
+                                @csrf
+                             </form>
                         </tr>
 
                         @endforeach
